@@ -1,0 +1,2489 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\chioma> spark-shell
+20/07/21 09:55:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+20/07/21 09:55:34 ERROR Shell: Failed to locate the winutils binary in the hadoop binary path
+java.io.IOException: Could not locate executable null\bin\winutils.exe in the Hadoop binaries.
+        at org.apache.hadoop.util.Shell.getQualifiedBinPath(Shell.java:378)
+        at org.apache.hadoop.util.Shell.getWinUtilsPath(Shell.java:393)
+        at org.apache.hadoop.util.Shell.<clinit>(Shell.java:386)
+        at org.apache.hadoop.util.StringUtils.<clinit>(StringUtils.java:79)
+        at org.apache.hadoop.security.Groups.parseStaticMapping(Groups.java:116)
+        at org.apache.hadoop.security.Groups.<init>(Groups.java:93)
+        at org.apache.hadoop.security.Groups.<init>(Groups.java:73)
+        at org.apache.hadoop.security.Groups.getUserToGroupsMappingService(Groups.java:293)
+        at org.apache.hadoop.security.UserGroupInformation.initialize(UserGroupInformation.java:283)
+        at org.apache.hadoop.security.UserGroupInformation.ensureInitialized(UserGroupInformation.java:260)
+        at org.apache.hadoop.security.UserGroupInformation.loginUserFromSubject(UserGroupInformation.java:789)
+        at org.apache.hadoop.security.UserGroupInformation.getLoginUser(UserGroupInformation.java:774)
+        at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:647)
+        at org.apache.spark.util.Utils$$anonfun$getCurrentUserName$1.apply(Utils.scala:2422)
+        at org.apache.spark.util.Utils$$anonfun$getCurrentUserName$1.apply(Utils.scala:2422)
+        at scala.Option.getOrElse(Option.scala:121)
+        at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2422)
+        at org.apache.spark.SecurityManager.<init>(SecurityManager.scala:79)
+        at org.apache.spark.deploy.SparkSubmit.secMgr$lzycompute$1(SparkSubmit.scala:348)
+        at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$secMgr$1(SparkSubmit.scala:348)
+        at org.apache.spark.deploy.SparkSubmit$$anonfun$prepareSubmitEnvironment$7.apply(SparkSubmit.scala:356)
+        at org.apache.spark.deploy.SparkSubmit$$anonfun$prepareSubmitEnvironment$7.apply(SparkSubmit.scala:356)
+        at scala.Option.map(Option.scala:146)
+        at org.apache.spark.deploy.SparkSubmit.prepareSubmitEnvironment(SparkSubmit.scala:355)
+        at org.apache.spark.deploy.SparkSubmit.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:774)
+        at org.apache.spark.deploy.SparkSubmit.doRunMain$1(SparkSubmit.scala:161)
+        at org.apache.spark.deploy.SparkSubmit.submit(SparkSubmit.scala:184)
+        at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+        at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:920)
+        at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:929)
+        at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+Spark context Web UI available at http://LAPTOP-9IA37HQN:4040
+Spark context available as 'sc' (master = local[*], app id = local-1595318152652).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 2.4.6
+      /_/
+
+Using Scala version 2.11.12 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_251)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> 1+1
+res0: Int = 2
+
+scala> 3=-1
+<console>:24: error: value =- is not a member of Int
+       3=-1
+        ^
+
+scala> 3+4
+res2: Int = 7
+
+scala> def myfunc() ="hello"
+myfunc: ()String
+
+scala> "A" "B"
+<console>:1: error: ';' expected but string literal found.
+"A" "B"
+    ^
+
+scala> "A" + "B"
+res3: String = AB
+
+scala> "A" + "B"
+res4: String = AB
+
+scala> int + 1
+<console>:24: error: not found: value int
+       int + 1
+       ^
+
+scala> int
+<console>:24: error: not found: value int
+       int
+       ^
+
+scala> INT
+<console>:24: error: not found: value INT
+       INT
+       ^
+
+scala> Integal
+<console>:24: error: not found: value Integal
+       Integal
+       ^
+
+scala> Integalval a = 1
+<console>:25: error: not found: value Integalval
+val $ires6 = Integalval.a
+             ^
+<console>:23: error: not found: value Integalval
+       Integalval a = 1
+       ^
+
+scala> val b=1
+b: Int = 1
+
+scala> b=2
+<console>:25: error: reassignment to val
+       b=2
+        ^
+
+scala> val b = 1
+b: Int = 1
+
+scala> b = 2
+<console>:25: error: reassignment to val
+       b = 2
+         ^
+
+scala> def myFunc() = "hello"
+myFunc: ()String
+
+scala> val seq = Seq("A", "B", "C")
+seq: Seq[String] = List(A, B, C)
+
+scala> Seq(1, 2, 3).map((i: Int) => i *2)
+res9: Seq[Int] = List(2, 4, 6)
+
+scala> 20/07/21 13:28:14 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 13:28:18 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 15:04:09 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 15:04:19 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 15:04:29 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 15:04:39 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 15:04:49 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 15:04:53 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 15:04:53 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 15:04:53 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 15:04:53 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 15:04:53 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 17:05:08 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 17:05:18 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 17:05:28 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 17:05:38 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 17:05:48 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 17:05:52 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 17:05:52 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 17:05:52 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 17:05:52 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 17:05:52 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 17:41:39 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 17:41:49 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 17:41:53 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 17:41:53 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 21:43:35 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 21:43:45 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 21:43:49 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 21:43:49 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 23:09:31 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 23:09:41 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 23:09:51 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 23:10:01 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 23:10:11 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/21 23:10:15 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 23:10:15 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 23:10:15 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 23:10:15 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/21 23:10:15 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 01:59:44 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 01:59:54 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 02:00:04 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 02:00:08 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 02:00:08 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 02:00:08 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 06:46:37 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 06:46:47 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 06:46:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 06:46:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 09:55:05 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 09:55:09 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 17:38:32 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 17:38:43 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 17:38:46 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 17:38:46 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 19:56:17 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 19:56:27 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 19:56:37 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 19:56:47 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 19:56:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 19:56:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 19:56:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 19:56:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 22:30:41 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 22:30:51 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/22 22:30:55 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/22 22:30:55 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/23 10:33:58 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/23 10:34:08 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/23 10:34:18 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/23 10:34:28 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/23 10:34:38 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/23 10:34:42 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/23 10:34:42 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/23 10:34:42 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/23 10:34:42 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/23 10:34:42 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/23 15:57:08 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/23 15:57:18 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/23 15:57:28 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/23 15:57:32 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/23 15:57:32 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/23 15:57:32 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/24 12:19:57 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/24 12:20:07 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/24 12:20:10 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/24 12:20:11 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/25 01:59:46 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/25 01:59:50 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/25 12:10:07 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/25 12:10:17 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/25 12:10:27 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/25 12:10:37 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/25 12:10:47 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/25 12:10:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/25 12:10:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/25 12:10:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/25 12:10:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/25 12:10:51 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/25 13:52:56 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/25 13:53:00 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/25 18:10:40 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Cannot receive any reply from LAPTOP-9IA37HQN:62043 in 10000 milliseconds. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at scala.util.Failure$$anonfun$recover$1.apply(Try.scala:216)
+        at scala.util.Try$.apply(Try.scala:192)
+        at scala.util.Failure.recover(Try.scala:216)
+        at scala.concurrent.Future$$anonfun$recover$1.apply(Future.scala:326)
+        at scala.concurrent.Future$$anonfun$recover$1.apply(Future.scala:326)
+        at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:36)
+        at org.spark_project.guava.util.concurrent.MoreExecutors$SameThreadExecutorService.execute(MoreExecutors.java:293)
+        at scala.concurrent.impl.ExecutionContextImpl$$anon$1.execute(ExecutionContextImpl.scala:136)
+        at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:44)
+        at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:252)
+        at scala.concurrent.Promise$class.complete(Promise.scala:55)
+        at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:157)
+        at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:237)
+        at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:237)
+        at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:36)
+        at scala.concurrent.BatchingExecutor$Batch$$anonfun$run$1.processBatch$1(BatchingExecutor.scala:63)
+        at scala.concurrent.BatchingExecutor$Batch$$anonfun$run$1.apply$mcV$sp(BatchingExecutor.scala:78)
+        at scala.concurrent.BatchingExecutor$Batch$$anonfun$run$1.apply(BatchingExecutor.scala:55)
+        at scala.concurrent.BatchingExecutor$Batch$$anonfun$run$1.apply(BatchingExecutor.scala:55)
+        at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:72)
+        at scala.concurrent.BatchingExecutor$Batch.run(BatchingExecutor.scala:54)
+        at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:601)
+        at scala.concurrent.BatchingExecutor$class.execute(BatchingExecutor.scala:106)
+        at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:599)
+        at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:44)
+        at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:252)
+        at scala.concurrent.Promise$class.tryFailure(Promise.scala:112)
+        at scala.concurrent.impl.Promise$DefaultPromise.tryFailure(Promise.scala:157)
+        at org.apache.spark.rpc.netty.NettyRpcEnv.org$apache$spark$rpc$netty$NettyRpcEnv$$onFailure$1(NettyRpcEnv.scala:206)
+        at org.apache.spark.rpc.netty.NettyRpcEnv$$anon$1.run(NettyRpcEnv.scala:243)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.run(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Cannot receive any reply from LAPTOP-9IA37HQN:62043 in 10000 milliseconds
+        ... 8 more
+20/07/25 18:10:44 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/26 01:59:49 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Cannot receive any reply from LAPTOP-9IA37HQN:62043 in 10000 milliseconds. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at scala.util.Failure$$anonfun$recover$1.apply(Try.scala:216)
+        at scala.util.Try$.apply(Try.scala:192)
+        at scala.util.Failure.recover(Try.scala:216)
+        at scala.concurrent.Future$$anonfun$recover$1.apply(Future.scala:326)
+        at scala.concurrent.Future$$anonfun$recover$1.apply(Future.scala:326)
+        at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:36)
+        at org.spark_project.guava.util.concurrent.MoreExecutors$SameThreadExecutorService.execute(MoreExecutors.java:293)
+        at scala.concurrent.impl.ExecutionContextImpl$$anon$1.execute(ExecutionContextImpl.scala:136)
+        at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:44)
+        at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:252)
+        at scala.concurrent.Promise$class.complete(Promise.scala:55)
+        at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:157)
+        at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:237)
+        at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:237)
+        at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:36)
+        at scala.concurrent.BatchingExecutor$Batch$$anonfun$run$1.processBatch$1(BatchingExecutor.scala:63)
+        at scala.concurrent.BatchingExecutor$Batch$$anonfun$run$1.apply$mcV$sp(BatchingExecutor.scala:78)
+        at scala.concurrent.BatchingExecutor$Batch$$anonfun$run$1.apply(BatchingExecutor.scala:55)
+        at scala.concurrent.BatchingExecutor$Batch$$anonfun$run$1.apply(BatchingExecutor.scala:55)
+        at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:72)
+        at scala.concurrent.BatchingExecutor$Batch.run(BatchingExecutor.scala:54)
+        at scala.concurrent.Future$InternalCallbackExecutor$.unbatchedExecute(Future.scala:601)
+        at scala.concurrent.BatchingExecutor$class.execute(BatchingExecutor.scala:106)
+        at scala.concurrent.Future$InternalCallbackExecutor$.execute(Future.scala:599)
+        at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:44)
+        at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:252)
+        at scala.concurrent.Promise$class.tryFailure(Promise.scala:112)
+        at scala.concurrent.impl.Promise$DefaultPromise.tryFailure(Promise.scala:157)
+        at org.apache.spark.rpc.netty.NettyRpcEnv.org$apache$spark$rpc$netty$NettyRpcEnv$$onFailure$1(NettyRpcEnv.scala:206)
+        at org.apache.spark.rpc.netty.NettyRpcEnv$$anon$1.run(NettyRpcEnv.scala:243)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.run(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Cannot receive any reply from LAPTOP-9IA37HQN:62043 in 10000 milliseconds
+        ... 8 more
+20/07/26 09:29:36 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/26 09:29:46 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/26 09:29:56 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/26 09:29:59 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/26 09:29:59 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/26 09:29:59 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/26 09:29:59 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/26 13:43:27 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/26 13:43:31 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+
+
+scala>
+
+scala> val left = 2
+left: Int = 2
+
+scala> val right = 1
+right: Int = 1
+
+scala> assert(left == right)class Point(x: Int, y: Int) {
+<console>:1: error: ';' expected but 'class' found.
+assert(left == right)class Point(x: Int, y: Int) {
+                     ^
+
+scala>   override def toString(): String = "(" + x + ", " + y + ")"
+<console>:23: error: not found: value x
+         override def toString(): String = "(" + x + ", " + y + ")"
+                                                 ^
+<console>:23: error: not found: value y
+         override def toString(): String = "(" + x + ", " + y + ")"
+                                                            ^
+
+scala> }
+<console>:1: error: eof expected but '}' found.
+}
+^
+
+scala> class Point(x: Int, y: Int) {
+     |   override def toString(): String = "(" + x + ", " + y + ")"
+     | }
+defined class Point
+
+scala>
+
+scala> object Classes {
+     |   def main(args: Array[String]) = {
+     |     val pt = new Point(1, 2)
+     |     println(pt)
+     |   }
+     | }
+defined object Classes
+
+scala> class ClassWithValParameter(val name: String)
+defined class ClassWithValParameter
+
+scala> val aClass = new ClassWithValParameter("Gandalf")
+aClass: ClassWithValParameter = ClassWithValParameter@196f9b75
+
+scala> aClass.name should be(
+     | )
+<console>:26: error: value should is not a member of String
+       aClass.name should be(
+                   ^
+<console>:26: error: not found: value be
+       aClass.name should be(
+                          ^
+
+scala> aClass.name should be(
+     |
+     |
+You typed two blank lines.  Starting a new command.
+
+scala> object Twice {
+     |   def apply(x: Int): Int = x * 2
+     |   def unapply(z: Int): Option[Int] = if (z % 2 == 0) Some(z / 2) else None
+     | }
+defined object Twice
+
+scala>
+
+scala> object TwiceTest extends Application {
+     |   val x = Twice(21)
+     |   x match { case Twice(n) => Console.println(n) } // prints 21
+     | }
+<console>:25: error: not found: type Application
+       object TwiceTest extends Application {
+                                ^
+
+scala> 1
+res11: Int = 1
+
+scala>
+
+scala> //pettern matching
+
+scala> T
+<console>:24: error: not found: value T
+       T
+       ^
+
+scala>
+
+scala> 1 match (
+<console>:1: error: '{' expected but '(' found.
+1 match (
+        ^
+
+scala> 1 match {
+     |   case 1 => println("good")
+     |   case 2 => println("bad")
+     | }
+good
+
+scala> "t" match {
+     |   case T(variable) => println(variable)
+     |   case _ => println("not found")
+     | }
+<console>:25: error: not found: value T
+         case T(variable) => println(variable)
+              ^
+
+scala> }"t" match {
+<console>:1: error: eof expected but '}' found.
+}"t" match {
+^
+
+scala>   case T(variable) => println(variable)
+<console>:1: error: illegal start of definition
+  case T(variable) => println(variable)
+  ^
+
+scala>   case _ => println("not found")
+<console>:1: error: illegal start of definition
+  case _ => println("not found")
+  ^
+
+scala> }
+<console>:1: error: eof expected but '}' found.
+}
+^
+
+scala> "t" match {
+     |   case T(variable) => println(variable)
+     |   case _ => println("not found")
+     | }
+<console>:25: error: not found: value T
+         case T(variable) => println(variable)
+              ^
+
+scala> \\"d"
+<console>:1: error: ';' expected but string literal found.
+\\"d"
+  ^
+
+scala> //"d"
+
+scala> "//d"
+res16: String = //d
+
+scala> "//d.r
+<console>:1: error: unclosed string literal
+"//d.r
+^
+
+scala> "//d.r"
+res17: String = //d.r
+
+scala> REGEX
+<console>:24: error: not found: value REGEX
+       REGEX
+       ^
+
+scala> REGEX.findfirstln("124tyfgju")
+<console>:24: error: not found: value REGEX
+       REGEX.findfirstln("124tyfgju")
+       ^
+
+scala> import scala.util.matching.Regex
+import scala.util.matching.Regex
+
+scala> REGEX.findfirstln("124tyfgju")
+<console>:25: error: not found: value REGEX
+       REGEX.findfirstln("124tyfgju")
+       ^
+
+scala> import scala.util.matching.Regex
+import scala.util.matching.Regex
+
+scala> val numberPattern: Regex = "[0-9]".r
+numberPattern: scala.util.matching.Regex = [0-9]
+
+scala>
+
+scala> numberPattern.findFirstMatchIn("awesomepassword") match {
+     |   case Some(_) => println("Password OK")
+     |   case None => println("Password must contain a number")
+     | }
+Password must contain a number
+
+scala> "t" match {
+     |   case T(variable) => println(variable)
+     |   case _ => println("not found")
+     | }
+<console>:28: error: not found: value T
+         case T(variable) => println(variable)
+              ^
+
+scala> val R(\\D*)\\d*".r
+<console>:1: error: unclosed string literal
+val R(\\D*)\\d*".r
+               ^
+
+scala> val R = (\\D*)\\d*".r
+<console>:1: error: unclosed string literal
+val R = (\\D*)\\d*".r
+                  ^
+
+scala> val R = "(\\D*)\\d*".r
+R: scala.util.matching.Regex = (\D*)\d*
+
+scala> //to find non digits
+
+scala> val R = "(\\D*)\\d*".r
+R: scala.util.matching.Regex = (\D*)\d*
+
+scala> myvalues.map(convert)
+<console>:27: error: not found: value myvalues
+       myvalues.map(convert)
+       ^
+<console>:27: error: not found: value convert
+       myvalues.map(convert)
+                    ^
+
+scala> int
+<console>:27: error: not found: value int
+       int
+       ^
+
+scala> Int
+res25: Int.type = object scala.Int
+
+scala> Integ
+<console>:27: error: not found: value Integ
+       Integ
+       ^
+
+scala> Integ
+<console>:27: error: not found: value Integ
+       Integ
+       ^
+
+scala> Integer
+<console>:27: error: object java.lang.Integer is not a value
+       Integer
+       ^
+
+scala> integ
+<console>:27: error: not found: value integ
+       integ
+       ^
+
+scala> Integer.
+     |
+     |
+You typed two blank lines.  Starting a new command.
+
+scala> Integer.
+     |
+     |
+You typed two blank lines.  Starting a new command.
+
+ case class (Person: String, age:Int)
+<console>:1: error: identifier expected but '(' found.
+case class (Person: String, age:Int)
+           ^
+<console>:1: error: case classes without a parameter list are not allowed;
+use either case objects or case classes with an explicit `()' as a parameter list.
+case class (Person: String, age:Int)
+                                    ^
+
+scala> case class Person(firstname: String, age:Int)
+defined class Person
+scala>
+
+scala> case class Person(firstname: String, age:Int)
+defined class Person
+
+scala>
+
+scala> case class CustomerId(customerid:Int)
+defined class CustomerId
+
+scala> //custustomer unique id
+
+scala>
+
+scala> case class CustomerUniqueId(customeruniqueid:Int)
+defined class CustomerUniqueId
+
+scala>
+
+scala> case class Customerdetails(customerzipcode: String,c
+     | case class Customerdetails(customerzipcode: String, customercity: String)
+<console>:2: error: ':' expected but case class found.
+case class Customerdetails(customerzipcode: String, customercity: String)
+^
+
+scala> case class CustomerZipcode(customerzipcode: String)
+defined class CustomerZipcode
+
+scala> case class CustomerCity(customercity: String)
+defined class CustomerCity
+
+scala> cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id=06b8999e2fba1a1fbc88172c00ba8bc7","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp
+<console>:1: error: Invalid literal number
+cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id=06b8999e2fba1a1fbc88172c00ba8bc7","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp
+                                                                                  ^
+
+scala> cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id=06b8999e2fba1a1fbc88172c00ba8bc7","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp)
+<console>:1: error: Invalid literal number
+cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id=06b8999e2fba1a1fbc88172c00ba8bc7","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp)
+                                                                                  ^
+
+scala> cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id=861eff4711a542e4b93843c6dd7febb0","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp)
+<console>:1: error: Invalid literal number
+cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id=861eff4711a542e4b93843c6dd7febb0","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp)
+                                                                                  ^
+
+scala> cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id=861eff4711a542e4b93843c6dd7febb0","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp)
+<console>:1: error: Invalid literal number
+cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id=861eff4711a542e4b93843c6dd7febb0","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp)
+                                                                                  ^
+
+scala>
+
+scala>
+
+scala>
+
+scala>
+
+scala>
+
+scala>
+
+scala> cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", "customer_unique_id=861eff4711a542e4b93843c6dd7febb0","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp)
+<console>:1: error: unclosed string literal
+cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", "customer_unique_id=861eff4711a542e4b93843c6dd7febb0","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp)
+                                                                                                                                                                             ^
+
+scala> cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", "customer_unique_id=861eff4711a542e4b93843c6dd7febb0","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp")
+<console>:25: error: not found: value cust
+val $ires6 = cust
+             ^
+<console>:23: error: not found: value cust
+       cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", "customer_unique_id=861eff4711a542e4b93843c6dd7febb0","customer_zip_code_prefix=14409","customer_city=france","customer_state=sp")
+       ^
+
+scala> cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+<console>:25: error: not found: value cust
+val $ires7 = cust
+             ^
+<console>:23: error: not found: value cust
+       cust=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+       ^
+
+scala> person=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+<console>:25: error: not found: value person
+val $ires8 = person
+             ^
+<console>:23: error: not found: value person
+       person=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+       ^
+
+scala> person=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+<console>:25: error: not found: value person
+val $ires9 = person
+             ^
+<console>:23: error: not found: value person
+       person=Customer (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+       ^
+
+scala>
+
+scala> Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+<console>:24: error: not found: value Customer
+       Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+       ^
+<console>:24: error: not found: value customer_id
+       Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+                ^
+<console>:24: error: not found: value customer_unique_id
+       Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+                                                                ^
+<console>:24: error: not found: value customer_zip_code_prefix
+       Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+                                                                                                                       ^
+<console>:24: error: not found: value customer_city
+       Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+                                                                                                                                                         ^
+<console>:24: error: not found: value customer_state
+       Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")
+                                                                                                                                                                                 ^
+
+scala> Seq [cust=Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")]
+<console>:1: error: ']' expected but '=' found.
+Seq [cust=Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")]
+         ^
+
+scala> Seq [cust=Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")]20/07/29 00:02:44 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/29 00:02:54 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/29 00:03:04 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/29 00:03:15 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/29 00:03:25 WARN Executor: Issue communicating with driver in heartbeater
+org.apache.spark.rpc.RpcTimeoutException: Futures timed out after [10000 milliseconds]. This timeout is controlled by spark.executor.heartbeatInterval
+        at org.apache.spark.rpc.RpcTimeout.org$apache$spark$rpc$RpcTimeout$$createRpcTimeoutException(RpcTimeout.scala:47)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:62)
+        at org.apache.spark.rpc.RpcTimeout$$anonfun$addMessageIfTimeout$1.applyOrElse(RpcTimeout.scala:58)
+        at scala.runtime.AbstractPartialFunction.apply(AbstractPartialFunction.scala:36)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:76)
+        at org.apache.spark.rpc.RpcEndpointRef.askSync(RpcEndpointRef.scala:92)
+        at org.apache.spark.executor.Executor.org$apache$spark$executor$Executor$$reportHeartBeat(Executor.scala:846)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply$mcV$sp(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.executor.Executor$$anon$2$$anonfun$run$1.apply(Executor.scala:875)
+        at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1945)
+        at org.apache.spark.executor.Executor$$anon$2.run(Executor.scala:875)
+        at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
+        at java.util.concurrent.FutureTask.runAndReset(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(Unknown Source)
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+        at java.lang.Thread.run(Unknown Source)
+Caused by: java.util.concurrent.TimeoutException: Futures timed out after [10000 milliseconds]
+        at scala.concurrent.impl.Promise$DefaultPromise.ready(Promise.scala:223)
+        at scala.concurrent.impl.Promise$DefaultPromise.result(Promise.scala:227)
+        at org.apache.spark.util.ThreadUtils$.awaitResult(ThreadUtils.scala:220)
+        at org.apache.spark.rpc.RpcTimeout.awaitResult(RpcTimeout.scala:75)
+        ... 14 more
+20/07/29 00:03:25 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/29 00:03:25 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/29 00:03:25 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/29 00:03:25 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+20/07/29 00:03:25 WARN NettyRpcEnv: Ignored message: HeartbeatResponse(false)
+
+<console>:1: error: ']' expected but '=' found.
+Seq [cust=Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")]
+         ^
+
+scala> Seq [cust=Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")]
+<console>:1: error: ']' expected but '=' found.
+Seq [cust=Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix="14409", customer_city="france", customer_state="sp")]
+         ^
+
+scala> Seq [cust=Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix "14409", customer_city="france", customer_state="sp")]
+<console>:1: error: ']' expected but '=' found.
+Seq [cust=Customer(customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix "14409", customer_city="france", customer_state="sp")]
+         ^
+
+scala> var customers= Seq (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix "14409", customer_city="france", customer_state="sp")
+<console>:1: error: ')' expected but string literal found.
+var customers= Seq (customer_id="06b8999e2fba1a1fbc88172c00ba8bc7", customer_unique_id="861eff4711a542e4b93843c6dd7febb0", customer_zip_code_prefix "14409", customer_city="france", customer_state="sp")
+                                                                                                                                                    ^
+
+scala> var customers= Seq("06b8999e2fba1a1fbc88172c00ba8","861eff4711a542e4b93843c6dd7febb0", "14409","france","sp")
+customers: Seq[String] = List(06b8999e2fba1a1fbc88172c00ba8, 861eff4711a542e4b93843c6dd7febb0, 14409, france, sp)
+
+scala>
+
+scala> "stest".st
+<console>:24: error: value st is not a member of String
+       "stest".st
+               ^
+
+scala> "stest".startsWith("st")
+res3: Boolean = true
+
+scala> def extractCustomers (seq:Seq[Customer]) :Seq(Customer
+<console>:1: error: '=' expected but '(' found.
+def extractCustomers (seq:Seq[Customer]) :Seq(Customer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                             ^
+
+scala> scala> case class Person(firstname: String, age:Int)
+
+// Detected repl transcript. Paste more, or ctrl-D to finish.
+
+defined class Person
+scala>case class PresipitationSample(station: String, stationName: string, elivation: Double, latitude: Double, longitute: Double, date: Int, hpcp: String, measurment: String, QualityFlag: String)
+
+
+scala>case class PresipitationSample(station: String, stationName: String, elivation: Double, latitude: Double,
+ longitute: Double, date: Int, hpcp: String, measurment: String, QualityFlag: String)
+
+
+scala> case class PresipitationSample(station: String, stationName: String, elevation: Double, latitude: Double, longitute: Double, date: Int, hpcp: String, measurment: String, QualityFlag: St
+ring)
+defined class PresipitationSample
+
+scala>
+
+scala> val h1 = headers.split(",")(0)
+<console>:23: error: not found: value headers
+       val h1 = headers.split(",")(0)
+
+
+
+
+import org.apache.spark.sql.functions._
+
+scala> //spark.read.option("header",true).csv("C:\Users\chioma\Downloads\PRECIP_HLY_sample_csv (1)")
+
+scala> spark
+res1: org.apache.spark.sql.SparkSession = org.apache.spark.sql.SparkSession@7441edeb
+
+scala> spark.read
+res2: org.apache.spark.sql.DataFrameReader = org.apache.spark.sql.DataFrameReader@1e79b0fc
+
+scala>
+
+scala> spark.read.csv("C:\Users\chioma\Downloads\PRECIP_HLY_sample_csv (1)")
+<console>:1: error: invalid escape character
+spark.read.csv("C:\Users\chioma\Downloads\PRECIP_HLY_sample_csv (1)")
+                   ^
+<console>:1: error: invalid escape character
+spark.read.csv("C:\Users\chioma\Downloads\PRECIP_HLY_sample_csv (1)")
+                         ^
+<console>:1: error: invalid escape character
+spark.read.csv("C:\Users\chioma\Downloads\PRECIP_HLY_sample_csv (1)")
+                                ^
+<console>:1: error: invalid escape character
+spark.read.csv("C:\Users\chioma\Downloads\PRECIP_HLY_sample_csv (1)")
+                                          ^
+
+scala> //spark.read.option("header",true).csv("/Users/chioma/Downloads/PRECIP_HLY_sample_csv (1)")
+
+scala> spark.read.csv("/Users/chioma/Downloads/PRECIP_HLY_sample_csv (1)")
+org.apache.spark.sql.AnalysisException: Path does not exist: file:/Users/chioma/Downloads/PRECIP_HLY_sample_csv (1);
+  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$org$apache$spark$sql$execution$datasources$DataSource$$checkAndGlobPathIfNecessary$1.apply(DataSource.scala:558)
+  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$org$apache$spark$sql$execution$datasources$DataSource$$checkAndGlobPathIfNecessary$1.apply(DataSource.scala:545)
+  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)
+  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)
+  at scala.collection.immutable.List.foreach(List.scala:392)
+  at scala.collection.TraversableLike$class.flatMap(TraversableLike.scala:241)
+  at scala.collection.immutable.List.flatMap(List.scala:355)
+  at org.apache.spark.sql.execution.datasources.DataSource.org$apache$spark$sql$execution$datasources$DataSource$$checkAndGlobPathIfNecessary(DataSource.scala:545)
+  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:359)
+  at org.apache.spark.sql.DataFrameReader.loadV1Source(DataFrameReader.scala:223)
+  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:211)
+  at org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:619)
+  at org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:468)
+  ... 51 elided
+
+scala>
+
+
+                ^
+
+scala> headers
+<console>:24: error: not found: value headers
+       headers
+       ^
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+scala> case class PresipitationSample(station: String, stationName: String, elevation: Double, latitude: Double, longitute: Double, date: Int, hpcp: String, measurment: String, QualityFlag: St
+ring)
+defined class PresipitationSample
+
+scala>
+
+
+
+
+
+
+
+
+
+
+scala>
